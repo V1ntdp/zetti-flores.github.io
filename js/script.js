@@ -1,117 +1,67 @@
 var menu_bar = document.getElementById('menu-bar');
 
-menu_bar.onclick = function (){
+menu_bar.onclick = function oi(){
     const sub_lista = document.querySelector(".listas");
     // adicionando class "seta-container no icone seta"
 
     menu_bar.classList.toggle('ativa');
-
+    
     if(menu_bar.classList.contains('ativa')){
         sub_lista.classList.add('oi')
     }else{
         sub_lista.classList.remove('oi')
     }
+
+    // if(menu_bar.classList.contains('ativa') || sub_lista.classList.contains('oi')){
 }
 
-//função de click nas setas primarias 
 
-const setaPrimaria = document.getElementsByClassName("pm")[0]
+// secelionando as setas clicada
 
-setaPrimaria.addEventListener('click', function(){
-    setaPrimaria.classList.toggle('ativo')
+const setas = document.querySelectorAll(".pm");
+// var setas recebendo as classes "pm" do CSS
+const conteudos = document.querySelectorAll(".drop-content");
+// var conteudos recebendo as classes "drop-content" do CSS
 
-    const conteudoPrimario = document.querySelectorAll('.drop-content')[0]
-    conteudoPrimario.classList.toggle('conteudo-primario')
-    
-})
+for(let i = 0; i < setas.length ; i++){
+// se a var "i" que é 0 for menor que stas.length que são 3, var "i" adicionara +1 até essa condição se tornar falsa.
+    setas[i].addEventListener('click', () => myFun(i))
+// setas recebendo o parametro que é a variavel que está adicionando +1, fazendo chamem todas as 3 setas.
+// está adicionando um evento de click para todas as setas e quando clicado ele ativa a função myFun
+// função myFun recebe a var "i" como parametro, para indicar que a cada seta clicada ativara está função.
+}
 
-const setaPrimaria2 = document.getElementsByClassName("pm")[1]
-setaPrimaria2.addEventListener('click', function(){
-    setaPrimaria2.classList.toggle('ativo')
+function myFun(ConteudoDeTalSeta){
+// função myFun com parametro ConteudoDeTalSeta, isto serve para quando eu clicar em setas, todos os codigos que está dentro desta função e usando um mesmo parametro, sejam referentes as setas clicadas
+// funcao interligada com as setas que ativam a função chamando o parametro i
+    conteudos[ConteudoDeTalSeta].classList.toggle('conteudo-primario');
 
-    let conteudoPrimario = document.querySelectorAll('.drop-content')[1]
-    conteudoPrimario.classList.toggle('conteudo-primario')
-    
-})
-
-const setaPrimaria3 = document.getElementsByClassName("pm")[2]
-setaPrimaria3.addEventListener('click', function(){
-    setaPrimaria3.classList.toggle('ativo')
-
-    let conteudoPrimario = document.querySelectorAll('.drop-content')[2]
-    conteudoPrimario.classList.toggle('conteudo-primario')
-    
-})
+    if(conteudos[ConteudoDeTalSeta].classList.contains('conteudo-primario')){
+        setas[ConteudoDeTalSeta].classList.add('ativo')
+    }else{
+        setas[ConteudoDeTalSeta].classList.remove('ativo')
+    }
+}
 
 
 
+// // crindo função para cada item da lista que tiver conteudo
+// // para mostrar depois de clicar na seta 
 
 
+const subSetas = document.querySelectorAll(".sb")
+const subContainer = document.querySelectorAll(".sub-container")
 
+for(let e = 0; e < subSetas.length; e++){
+    subSetas[e].addEventListener('click', () => subLista(e))
+    console.log(subSetas)
+}
 
-
-// crindo função para cada item da lista que tiver conteudo
-// para mostrar depois de clicar na seta 
-
-var seta1 = document.getElementsByClassName('mb')[1]
-seta1.addEventListener('click', (cliclou)=>{
-
-    seta1.classList.toggle('ativo')
-
-    var setaContainer = document.querySelectorAll('.sub-container')[0]
-    setaContainer.classList.toggle('ativo')
-})
-
-
-var seta2 = document.getElementsByClassName('mb')[2]
-seta2.addEventListener('click', (cliclou)=>{
-
-    seta2.classList.toggle('ativo')
-    var setaContainer = document.querySelectorAll('.sub-container')[1]
-    setaContainer.classList.toggle('ativo')
-})
-
-var seta3 = document.getElementsByClassName('mb')[3]
-seta3.addEventListener('click', (cliclou)=>{
-
-    seta3.classList.toggle('ativo')
-    var setaContainer = document.querySelectorAll('.sub-container')[2]
-    setaContainer.classList.toggle('ativo')
-}) 
-
-var seta4 = document.getElementsByClassName('mb')[5]
-seta4.addEventListener('click', (clicou)=>{
-
-    seta4.classList.toggle('ativo')
-    var setaContainer = document.getElementsByClassName("sub-container")[3]
-    setaContainer.classList.toggle('ativo')
-})
-
-var seta5 = document.getElementsByClassName('mb')[6]
-seta5.addEventListener('click', (clicou)=>{
-
-    seta5.classList.toggle('ativo')
-    var setaContainer = document.getElementsByClassName("sub-container")[4]
-    setaContainer.classList.toggle('ativo')
-})
-var seta6 = document.getElementsByClassName('mb')[7]
-seta6.addEventListener('click', (clicou)=>{
-
-    seta6.classList.toggle('ativo')
-    var setaContainer = document.getElementsByClassName("sub-container")[5]
-    setaContainer.classList.toggle('ativo')
-})
-var seta7 = document.getElementsByClassName('mb')[9]
-seta7.addEventListener('click', (clicou)=>{
-
-    seta7.classList.toggle('ativo')
-    var setaContainer = document.getElementsByClassName("sub-container")[6]
-    setaContainer.classList.toggle('ativo')
-})
-var seta8 = document.getElementsByClassName('mb')[10]
-seta8.addEventListener('click', (clicou)=>{
-
-    seta8.classList.toggle('ativo')
-    var setaContainer = document.getElementsByClassName("sub-container")[7]
-    setaContainer.classList.toggle('ativo')
-})
+function subLista(subConteudo){
+    subContainer[subConteudo].classList.toggle('ativo');
+    if(subContainer[subConteudo].classList.contains('ativo')){
+        subSetas[subConteudo].classList.add('ativo')
+    }else{
+        subSetas[subConteudo].classList.remove('ativo')
+    }
+    }
